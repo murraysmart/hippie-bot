@@ -14,7 +14,7 @@ app.post('/coffee', (req, res) => {
             var giphyImgList = JSON.parse(body).data;
             var randId = Math.round(Math.random() * Math.round(giphyImgList.length - 1));
 
-            // select the random fixed_width gif from the returned list
+            // Select the random fixed_width gif from the returned list
             var giphyImg = JSON.parse(body).data[randId].images.fixed_width.url;
 
             var resPayload = {
