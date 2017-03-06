@@ -38,9 +38,8 @@ app.post('/coffee', (req, res) => {
 });
 
 //  =====  Configure & Start Express Server  =====
-var SERVER_IP = 'localhost';
-var SERVER_PORT = 8080;
+var SERVER_PORT = process.env.PORT || 8080;
 
-app.listen(SERVER_PORT, SERVER_IP, () => {
-    console.log('Server : http://' + SERVER_IP + ':' + SERVER_PORT);
+app.listen(SERVER_PORT, () => {
+    console.log('Server : http://localhost:' + SERVER_PORT);
 });
