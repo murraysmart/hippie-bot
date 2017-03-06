@@ -6,6 +6,10 @@ var app = express();
 var reqLib = require('request');
 
 //  =====  Express Route Configuration  =====
+app.get('/', (req, res) => {
+    res.status(200).send('It is working');
+});
+
 app.post('/coffee', (req, res) => {
 
     // Hit up the giphy api using their public key to get a list of images related to "coffee"
