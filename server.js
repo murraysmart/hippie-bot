@@ -5,12 +5,15 @@ var app = express();
 //  =====  Import Request library  =====
 var reqLib = require('request');
 
+const green = "green";
+const red = "red";
+
 //  =====  Express Route Configuration  =====
 app.get('/', (req, res) => {
     res.status(200).send('It is working');
 });
 
-app.post('/coffee', (req, res) => {
+app.get('/coffee', (req, res) => {
 
     // Hit up the giphy api using their public key to get a list of images related to "coffee"
     try {
@@ -21,12 +24,7 @@ app.post('/coffee', (req, res) => {
             // Select the random fixed_width gif from the returned list
             var giphyImg = JSON.parse(body).data[randId].images.fixed_width.url;
 
-            var resPayload = {
-                "color": "green",
-                "message": '@here Who wants to get some: ' + giphyImg,
-                "notify": false,
-                "message_format": "text"
-            };
+            var resPayload = genPayload(green, '@here Who wants to get some: ' + giphyImg, false, "text");
 
             console.log(req.originalUrl);
 
@@ -34,8 +32,21 @@ app.post('/coffee', (req, res) => {
         });
     } catch (e) {
         console.log('Error: ', e);
+        res.status(200).send(genPayload(red, "Call failed", false, "text"));
     }
+
 });
+
+var genPayload = function(color, message, notify, message_format ){
+  var resPayload = {
+      "color": color,
+      "message": message,
+      "notify": notify,
+      "message_format": message_format
+  };
+
+  return resPayload;
+}
 
 //  =====  Configure & Start Express Server  =====
 var SERVER_PORT = process.env.PORT || 8080;
