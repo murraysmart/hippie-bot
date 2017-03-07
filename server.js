@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
     res.status(200).send('It is working');
 });
 
-app.get('/coffee', (req, res) => {
+app.post('/coffee', (req, res) => {
 
     // Hit up the giphy api using their public key to get a list of images related to "coffee"
     try {
