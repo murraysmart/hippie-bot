@@ -8,6 +8,18 @@ var reqLib = require('request');
 const green = "green";
 const red = "red";
 
+//  =====  Utility Functions  =====
+var genPayload = function (color, message, notify, message_format) {
+    var resPayload = {
+        "color": color,
+        "message": message,
+        "notify": notify,
+        "message_format": message_format
+    };
+
+    return resPayload;
+};
+
 //  =====  Express Route Configuration  =====
 app.get('/', (req, res) => {
     res.status(200).send('It is working');
@@ -37,18 +49,7 @@ app.get('/coffee', (req, res) => {
 
 });
 
-var genPayload = function(color, message, notify, message_format ){
-  var resPayload = {
-      "color": color,
-      "message": message,
-      "notify": notify,
-      "message_format": message_format
-  };
-
-  return resPayload;
-}
-
-//  =====  Configure & Start Express Server  =====
+//  =====  Start Express Server  =====
 var SERVER_PORT = process.env.PORT || 8080;
 
 app.listen(SERVER_PORT, () => {
