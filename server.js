@@ -23,14 +23,14 @@ app.post('/coffee', (req, res) => {
 
             var resPayload = {
                 "color": "green",
-                "message": giphyImg,
+                "message": '@here Who wants to get some: ' + giphyImg,
                 "notify": false,
                 "message_format": "text"
             };
 
             console.log(req.originalUrl);
 
-            res.status(200).send('@here Who wants to get some: ' + resPayload);
+            res.status(200).send(resPayload);
         });
     } catch (e) {
         console.log('Error: ', e);
