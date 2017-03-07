@@ -30,7 +30,7 @@ app.post('/coffee', (req, res) => {
 
             console.log(req.originalUrl);
 
-            res.status(200).send(resPayload);
+            res.status(200).send('@here Who wants to get some: ' + resPayload);
         });
     } catch (e) {
         console.log('Error: ', e);
